@@ -741,38 +741,55 @@ static void homeaxis(int axis) {
 #define HOMEAXIS(LETTER) homeaxis(LETTER##_AXIS)
 
 void deploy_z_probe() {
+
+  // Move next to the tower with the probe off the edge of the bed
   feedrate = homing_feedrate[X_AXIS];
-  destination[X_AXIS] = 16;
-  destination[Y_AXIS] = 103;
-  destination[Z_AXIS] = 11;
+  destination[X_AXIS] = 10;
+  destination[Y_AXIS] = 110;
+  destination[Z_AXIS] = 3;
   prepare_move_raw();
   
   // Deploy the probe
   feedrate = homing_feedrate[X_AXIS]/10;
-  destination[X_AXIS] = 26;
+  destination[X_AXIS] = current_position[X_AXIS] + 5;
   prepare_move_raw();
   
-  // Move clear of the tool
-  destination[Y_AXIS] = 93;
+  // Move clear of the tool in two steps
+  feedrate = homing_feedrate[X_AXIS];
+  destination[Z_AXIS] = current_position[Z_AXIS] + 20;
   prepare_move_raw();
+  
+  destination[Y_AXIS] = current_position[Y_AXIS] - 20;
+  prepare_move_raw();
+
   st_synchronize();
 }
 
 void retract_z_probe() {
   feedrate = homing_feedrate[X_AXIS];
+  
+  // Move up to avoid hitting the bed in the next arc
+  destination[X_AXIS] = current_position[X_AXIS];
+  destination[Y_AXIS] = current_position[Y_AXIS];
+  destination[Z_AXIS] = current_position[Z_AXIS] + 50;
+  prepare_move_raw();
+  
+  // Move above the tool
   destination[X_AXIS] = 20;
-  destination[Y_AXIS] = 113;
-  destination[Y_AXIS] = 46;
+  destination[Y_AXIS] = 118;
+  destination[Z_AXIS] = 45;
   prepare_move_raw();
 
-  // Move the nozzle below the print surface to push the probe up.
+  // Push down on the tool
   feedrate = homing_feedrate[Z_AXIS]/10;
-  destination[Z_AXIS] = current_position[Z_AXIS] - 12;
+  destination[Z_AXIS] = current_position[Z_AXIS] -10;
   prepare_move_raw();
 
+  // Move up away from the tool
   feedrate = homing_feedrate[Z_AXIS];
   destination[Z_AXIS] = current_position[Z_AXIS] + 30;
   prepare_move_raw();
+  
   st_synchronize();
 }
 
