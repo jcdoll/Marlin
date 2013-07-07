@@ -81,10 +81,10 @@
 #define DELTA_SEGMENTS_PER_SECOND 200
 
 // Center-to-center distance of the holes in the diagonal push rods.
-#define DELTA_DIAGONAL_ROD 215.0 // mm
+#define DELTA_DIAGONAL_ROD 288.0 // mm
 
 // Horizontal offset from middle of printer to smooth rod center.
-#define DELTA_SMOOTH_ROD_OFFSET 145.0 // mm
+#define DELTA_SMOOTH_ROD_OFFSET 213.8 // mm
 
 // Horizontal offset of the universal joints on the end effector.
 #define DELTA_EFFECTOR_OFFSET 19.9 // mm
@@ -133,10 +133,10 @@
 // 52 is 200k thermistor - ATC Semitec 204GT-2 (1k pullup)
 // 55 is 100k thermistor - ATC Semitec 104GT-2 (Used in ParCan) (1k pullup)
 
-#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 1
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT 
@@ -283,7 +283,7 @@ const bool X_MIN_INVERTING = false;
 const bool Y_MAX_INVERTING = false;
 const bool Y_MIN_INVERTING = false;
 const bool Z_MAX_INVERTING = false;
-const bool Z_MIN_INVERTING = false;   // set to true for a zprobe endstop that is NC
+const bool Z_MIN_INVERTING = true;   // set to true for a zprobe endstop that is NC
 //#define DISABLE_MAX_ENDSTOPS
 //#define DISABLE_MIN_ENDSTOPS
 
@@ -304,9 +304,9 @@ const bool Z_MIN_INVERTING = false;   // set to true for a zprobe endstop that i
 #define DISABLE_Z false
 #define DISABLE_E false // For all extruders
 
-#define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
-#define INVERT_Z_DIR false    // for Mendel set to false, for Orca set to true
+#define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
+#define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
+#define INVERT_Z_DIR true    // for Mendel set to false, for Orca set to true
 #define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
@@ -320,14 +320,14 @@ const bool Z_MIN_INVERTING = false;   // set to true for a zprobe endstop that i
 #define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.
 #define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
 // Travel limits after homing
-#define X_MAX_POS 90
-#define X_MIN_POS -90
-#define Y_MAX_POS 90
-#define Y_MIN_POS -90
+#define X_MAX_POS  105
+#define X_MIN_POS -105
+#define Y_MAX_POS  105
+#define Y_MIN_POS -105
 #define Z_MAX_POS MANUAL_Z_HOME_POS
 #define Z_MIN_POS 0
 #ifdef DELTA
-  #define R_MAX 90            // maximum usable radius (mm)
+  #define R_MAX 105           // maximum usable radius (mm)
   #define PROBE_FRACTION 85   // fraction of bed to probe (%)
 #endif
 
@@ -343,17 +343,17 @@ const bool Z_MIN_INVERTING = false;   // set to true for a zprobe endstop that i
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 250  // For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 185.75  // For delta: Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
 #define HOMING_FEEDRATE {200*60, 200*60, 200*60, 0}  // set the homing speeds (mm/min)
 
-#define Z_PROBE_OFFSET {0, -13.6, -6.4, 0}  // Distance between hotend nozzle and deployed bed leveling probe.
+#define Z_PROBE_OFFSET {0, 13.6, -6.3, 0}  // Distance between hotend nozzle and deployed bed leveling probe.
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {100, 100, 100, 1250}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 550}
 #define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 25}    // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {9000,9000,9000,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
@@ -387,7 +387,7 @@ const bool Z_MIN_INVERTING = false;   // set to true for a zprobe endstop that i
 //#define EEPROM_CHITCHAT
 
 // Preheat Constants
-#define PLA_PREHEAT_HOTEND_TEMP 180 
+#define PLA_PREHEAT_HOTEND_TEMP 185 
 #define PLA_PREHEAT_HPB_TEMP 70
 #define PLA_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
 

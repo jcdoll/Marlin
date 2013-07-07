@@ -3,3 +3,6 @@ applet/
 *~
 *.orig
 *.rej
+Marlin/Gen7
+Marlin/hardware
+Marlin/Sanguino
