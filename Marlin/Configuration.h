@@ -307,7 +307,7 @@ const bool Z_MIN_INVERTING = true;   // set to true for a zprobe endstop that is
 #define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
 #define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_E0_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 
@@ -317,8 +317,8 @@ const bool Z_MIN_INVERTING = true;   // set to true for a zprobe endstop that is
 #define Y_HOME_DIR 1
 #define Z_HOME_DIR 1
 
-#define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.
-#define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
+#define min_software_endstops false // If true, axis won't move to coordinates less than HOME_POS.
+#define max_software_endstops false  // If true, axis won't move to coordinates greater than the defined lengths below.
 // Travel limits after homing
 #define X_MAX_POS  105
 #define X_MIN_POS -105
@@ -349,11 +349,10 @@ const bool Z_MIN_INVERTING = true;   // set to true for a zprobe endstop that is
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
 #define HOMING_FEEDRATE {200*60, 200*60, 200*60, 0}  // set the homing speeds (mm/min)
 
-#define Z_PROBE_OFFSET {0, 14, -6.4, 0}  // Distance between hotend nozzle and deployed bed leveling probe.
+#define Z_PROBE_OFFSET {0, -14.5, -5.6, 0}  // Vector from the hotend nozzle to the deployed bed leveling probe
 
 // default settings
-
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 550}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 493}
 #define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 25}    // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {9000,9000,9000,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
