@@ -307,7 +307,7 @@ const bool Z_MIN_INVERTING = true;   // set to true for a zprobe endstop that is
 #define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
 #define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_E0_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 
@@ -343,17 +343,17 @@ const bool Z_MIN_INVERTING = true;   // set to true for a zprobe endstop that is
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 185  // For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 178  // For delta: Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
 #define HOMING_FEEDRATE {200*60, 200*60, 200*60, 0}  // set the homing speeds (mm/min)
 
-#define Z_PROBE_OFFSET {0, -14.5, -5.6, 0}  // Vector from the hotend nozzle to the deployed bed leveling probe
+#define Z_PROBE_OFFSET {0, -14.5, -5.875, 0}  // Vector from the hotend nozzle to the deployed bed leveling probe
 
 // default settings
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 493}
-#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 25}    // (mm/sec)
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {100, 100, 100, 97.1}
+#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 100}    // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {9000,9000,9000,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
@@ -386,7 +386,7 @@ const bool Z_MIN_INVERTING = true;   // set to true for a zprobe endstop that is
 //#define EEPROM_CHITCHAT
 
 // Preheat Constants
-#define PLA_PREHEAT_HOTEND_TEMP 185 
+#define PLA_PREHEAT_HOTEND_TEMP 200 
 #define PLA_PREHEAT_HPB_TEMP 70
 #define PLA_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
 

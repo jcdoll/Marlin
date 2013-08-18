@@ -744,14 +744,14 @@ void deploy_z_probe() {
 
   // Move next to the tower with the probe off the edge of the bed
   feedrate = homing_feedrate[X_AXIS];
-  destination[X_AXIS] = -10;
-  destination[Y_AXIS] = 110;
+  destination[X_AXIS] = -22;
+  destination[Y_AXIS] = 112;
   destination[Z_AXIS] = 3;
   prepare_move_raw();
   
   // Deploy the probe
   feedrate = homing_feedrate[X_AXIS]/10;
-  destination[X_AXIS] = current_position[X_AXIS] - 5;
+  destination[X_AXIS] = current_position[X_AXIS] - 12;
   prepare_move_raw();
   
   // Move clear of the tool in two steps
@@ -771,18 +771,18 @@ void retract_z_probe() {
   // Move up to avoid hitting the bed in the next arc
   destination[X_AXIS] = current_position[X_AXIS];
   destination[Y_AXIS] = current_position[Y_AXIS];
-  destination[Z_AXIS] = current_position[Z_AXIS] + 60;
+  destination[Z_AXIS] = current_position[Z_AXIS] + 70;
   prepare_move_raw();
   
   // Move above the tool
-  destination[X_AXIS] = -20;
-  destination[Y_AXIS] = 118;
-  destination[Z_AXIS] = 45;
+  destination[X_AXIS] = -26;
+  destination[Y_AXIS] = 131;
+  destination[Z_AXIS] = 62;
   prepare_move_raw();
 
   // Push down on the tool
   feedrate = homing_feedrate[Z_AXIS]/10;
-  destination[Z_AXIS] = current_position[Z_AXIS] -10;
+  destination[Z_AXIS] = current_position[Z_AXIS] - 14;
   prepare_move_raw();
 
   // Move up away from the tool
@@ -828,12 +828,13 @@ void calibrate_print_surface(float z_offset) {
   for (int y = 3; y >= -3; y--) {
     int dir = y % 2 ? -1 : 1;
     for (int x = -3*dir; x != 4*dir; x += dir) {
+	  // Probe up to 3 steps away from the origin
       if (x*x + y*y < 11) {
-	destination[X_AXIS] = stepsize * x + z_probe_offset[X_AXIS];
-	destination[Y_AXIS] = stepsize * y + z_probe_offset[Y_AXIS];
-	bed_level[x+3][y+3] = z_probe() + z_offset;
+	    destination[X_AXIS] = stepsize * x + z_probe_offset[X_AXIS];
+	    destination[Y_AXIS] = stepsize * y + z_probe_offset[Y_AXIS];
+	    bed_level[x+3][y+3] = z_probe() + z_offset;
       } else {
-	bed_level[x+3][y+3] = 0.0;
+	    bed_level[x+3][y+3] = 0.0;
       }
     }
     // For unprobed positions just copy nearest neighbor.
